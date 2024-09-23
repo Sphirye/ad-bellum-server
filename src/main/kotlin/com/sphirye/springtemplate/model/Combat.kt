@@ -9,8 +9,12 @@ class Combat (
     @GeneratedValue
     override var id: Long? = null,
 
+    @ManyToOne
+    @JoinColumn(name = "fencer_1_id")
     var fencer_1: Fencer? = null,
 
+    @ManyToOne
+    @JoinColumn(name = "fencer_2_id")
     var fencer_2: Fencer? = null,
 
     @Enumerated(EnumType.STRING)
