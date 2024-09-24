@@ -4,7 +4,7 @@ import com.sphirye.shared.utils.Identifiable
 import jakarta.persistence.*
 
 @Entity
-class Combat (
+class Match (
     @Id
     @GeneratedValue
     override var id: Long? = null,
@@ -18,10 +18,10 @@ class Combat (
     var fencer_2: Fencer? = null,
 
     @Enumerated(EnumType.STRING)
-    var state: CombatState? = null,
+    var state: MatchState? = null,
 
 ): Identifiable<Long> {
-    enum class CombatState {
+    enum class MatchState {
         WAITING, IN_PROGRESS, FINISHED
     }
 }
