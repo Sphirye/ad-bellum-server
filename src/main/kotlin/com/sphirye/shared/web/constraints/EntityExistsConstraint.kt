@@ -10,16 +10,20 @@ import org.hibernate.validator.internal.engine.constraintvalidation.ConstraintVa
 import org.springframework.stereotype.Component
 
 @Component
-class EntityExistsConstraint: ConstraintValidator<EntityExists, String?> {
+class EntityExistsConstraint: ConstraintValidator<EntityExists, Long?> {
 
     @PersistenceContext
     private var _entityManager: EntityManager? = null
 
     override fun initialize(databaseConstraint: EntityExists) {}
 
-    override fun isValid(value: String?, context: ConstraintValidatorContext?): Boolean {
-        if (value == null || _entityManager == null) {
+    override fun isValid(value: Long?, context: ConstraintValidatorContext?): Boolean {
+        if (_entityManager == null) {
             return true
+        }
+
+        if (value == null)  {
+            return false
         }
 
         val contextImpl = context as ConstraintValidatorContextImpl
