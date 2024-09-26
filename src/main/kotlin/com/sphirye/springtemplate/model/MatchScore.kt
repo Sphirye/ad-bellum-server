@@ -10,7 +10,7 @@ import jakarta.persistence.ManyToOne
 import org.jetbrains.annotations.NotNull
 
 @Entity
-class MatchPoint (
+class MatchScore (
     @Id
     @GeneratedValue
     override var id: Long? = null,

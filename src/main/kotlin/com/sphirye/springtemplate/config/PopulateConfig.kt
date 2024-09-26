@@ -1,9 +1,13 @@
 package com.sphirye.springtemplate.config
 
 import com.sphirye.springtemplate.model.Authority
+import com.sphirye.springtemplate.model.User
 import com.sphirye.springtemplate.repository.AuthorityRepository
+import com.sphirye.springtemplate.repository.UserRepository
+import com.sphirye.springtemplate.service.UserService
 import jakarta.annotation.PostConstruct
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
 
 @Component
@@ -13,12 +17,28 @@ class PopulateConfig {
     @Autowired
     private lateinit var _authorityRepository: AuthorityRepository
 
+    @Autowired
+    private lateinit var _userRepository: UserRepository
+
+    @Autowired
+    private lateinit var _userService: UserService
+
     @PostConstruct
     fun init() {
         Authority.Role.values().forEach {
             if (!_authorityRepository.existsById(it)) {
                 _authorityRepository.save(Authority(id = it))
             }
+        }
+
+        if (_userRepository.count() <= 0) {
+            _userService.create(
+                User(
+                    username = "sphirye",
+                    password = "1234",
+                    email = "sphirye@gmail.com"
+                )
+            )
         }
     }
 
