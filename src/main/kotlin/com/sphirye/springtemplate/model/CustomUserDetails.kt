@@ -1,14 +1,14 @@
 package com.sphirye.springtemplate.model
 
-import org.springframework.security.core.authority.SimpleGrantedAuthority
+import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 
-data class CustomUserDetails (
+data class CustomUserDetails(
     private val id: Long?,
     private val username: String?,
     private val email: String?,
     private val password: String?,
-    private val authorities: Collection<SimpleGrantedAuthority>?
+    private val authorities: MutableCollection<out GrantedAuthority>
 ) : UserDetails {
     private val accountExpiredYn = false
     private val accountLockedYn = false
