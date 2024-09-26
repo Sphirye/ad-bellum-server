@@ -5,6 +5,7 @@ import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.Id
 import jakarta.validation.constraints.NotNull
+import java.io.Serializable
 
 @Entity
 class Fencer (
@@ -17,4 +18,4 @@ class Fencer (
 
     var email: String? = null,
 
-): Identifiable<Long>
+): Identifiable<Long>, Serializable, Auditing()
