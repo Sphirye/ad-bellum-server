@@ -58,13 +58,7 @@ class SecurityConfig {
     }
 
     @Bean
-    fun passwordEncoder(): PasswordEncoder {
-        return object : BCryptPasswordEncoder() {
-            override fun matches(rawPassword: CharSequence?, encodedPassword: String?): Boolean {
-                return rawPassword == encodedPassword
-            }
-        }
-    }
+    fun passwordEncoder(): PasswordEncoder { return CustomPasswordEncoder() }
 
     @Bean
     fun authenticationManager(): AuthenticationManager {
