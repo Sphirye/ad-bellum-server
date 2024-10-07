@@ -1,5 +1,6 @@
 package com.sphirye.springtemplate.model
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.sphirye.shared.utils.Identifiable
 import jakarta.persistence.*
 import jakarta.validation.constraints.Email
@@ -20,6 +21,7 @@ class User(
     var email: String? = null,
 
     @field:NotNull
+    @JsonIgnore
     var password: String? = null,
 
     @ManyToMany(fetch = FetchType.EAGER)

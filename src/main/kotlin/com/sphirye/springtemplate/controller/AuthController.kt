@@ -1,6 +1,6 @@
 package com.sphirye.springtemplate.controller
 
-import com.sphirye.springtemplate.model.JwtToken
+import com.sphirye.springtemplate.model.Session
 import com.sphirye.springtemplate.model.UserCredentials
 import com.sphirye.springtemplate.service.AuthService
 import org.springframework.beans.factory.annotation.Autowired
@@ -15,7 +15,7 @@ class AuthController {
     private lateinit var _authService: AuthService
 
     @PostMapping("/auth/login")
-    fun postLogin(@RequestBody credentials: UserCredentials): JwtToken {
+    fun postLogin(@RequestBody credentials: UserCredentials): Session {
         return _authService.login(credentials)
     }
 
