@@ -1,6 +1,6 @@
 package com.sphirye.springtemplate.service
 
-import com.sphirye.springtemplate.model.JwtToken
+import com.sphirye.springtemplate.model.Session
 import com.sphirye.springtemplate.model.UserCredentials
 import com.sphirye.springtemplate.model.UserIdentity
 import com.sphirye.springtemplate.security.util.JwtTokenUtil
@@ -26,7 +26,7 @@ class AuthService {
     @Autowired
     private lateinit var _jwtTokenUtil: JwtTokenUtil
 
-    fun login(credentials: UserCredentials): JwtToken {
+    fun login(credentials: UserCredentials): Session {
         val user = _userService.findByEmail(credentials.email)
 
         if (!_passwordEncoder.matches(credentials.password, user.password)) {
@@ -39,6 +39,9 @@ class AuthService {
             UsernamePasswordAuthenticationToken(userIdentity, user.password, listOf())
         )
 
-        return JwtToken(token = _jwtTokenUtil.generateAccessToken(userIdentity.id))
+        return Session(
+            token = "Bearer ${_jwtTokenUtil.generateAccessToken(userIdentity.id)}",
+            user = user
+        )
     }
 }
