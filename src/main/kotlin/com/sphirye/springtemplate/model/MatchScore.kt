@@ -40,7 +40,7 @@ class MatchScore (
     }
 
     enum class Verdict {
-        CLEAN, AFTER_BLOW, DOUBLE, NO_EXCHANGE
+        POINT, AFTER_BLOW, DOUBLE, NO_EXCHANGE
     }
 
     @JsonIgnore
