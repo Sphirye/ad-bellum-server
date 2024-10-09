@@ -1,12 +1,9 @@
 package com.sphirye.springtemplate.model
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.sphirye.shared.utils.Identifiable
-import jakarta.persistence.Entity
-import jakarta.persistence.EnumType
-import jakarta.persistence.Enumerated
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.Id
-import jakarta.persistence.ManyToOne
+import com.sphirye.shared.web.annotation.EntityExists
+import jakarta.persistence.*
 import org.jetbrains.annotations.NotNull
 
 @Entity
@@ -30,6 +27,13 @@ class MatchScore (
     @Enumerated(EnumType.STRING)
     var verdict: Verdict? = null,
 
+    @Column(name = "match_id", nullable = false)
+    @field:EntityExists(
+        entityName = "Match",
+        primaryKey = "id",
+    )
+    var matchId: Long? = null,
+
 ): Identifiable<Long> {
     enum class PointType {
         CUT, THRUST, SLICE
@@ -38,4 +42,10 @@ class MatchScore (
     enum class Verdict {
         CLEAN, AFTER_BLOW, DOUBLE, NO_EXCHANGE
     }
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "match_id", insertable = false, updatable = false)
+    var match: Match? = null
+
 }
