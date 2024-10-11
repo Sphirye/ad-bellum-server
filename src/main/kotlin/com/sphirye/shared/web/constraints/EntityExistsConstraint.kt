@@ -23,7 +23,7 @@ class EntityExistsConstraint: ConstraintValidator<EntityExists, Long?> {
         }
 
         if (value == null)  {
-            return false
+            return true
         }
 
         val contextImpl = context as ConstraintValidatorContextImpl
