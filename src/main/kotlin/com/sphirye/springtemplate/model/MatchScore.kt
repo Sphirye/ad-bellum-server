@@ -16,9 +16,12 @@ class MatchScore (
     @Enumerated(EnumType.STRING)
     var type: PointType? = null,
 
-    @field:NotNull
-    @ManyToOne
-    var scorer: Fencer? = null,
+    @Column(name = "scorer")
+    @field:EntityExists(
+        entityName = "Fencer",
+        primaryKey = "id",
+    )
+    var scorer_id: Long? = null,
 
     @field:NotNull
     var timestamp: String? = null,
@@ -34,13 +37,19 @@ class MatchScore (
     )
     var matchId: Long? = null,
 
+    @field:NotNull
+    var afterblow: Boolean? = null,
+
+    @field:NotNull
+    var control: Boolean? = null,
+
 ): Identifiable<Long> {
     enum class PointType {
         CUT, THRUST, SLICE
     }
 
     enum class Verdict {
-        POINT, AFTER_BLOW, DOUBLE, NO_EXCHANGE
+        POINT, DOUBLE, NO_EXCHANGE
     }
 
     @JsonIgnore
@@ -48,4 +57,7 @@ class MatchScore (
     @JoinColumn(name = "match_id", insertable = false, updatable = false)
     var match: Match? = null
 
+    @ManyToOne
+    @JoinColumn(name = "scorer", insertable = false, updatable = false)
+    var scorer: Fencer? = null
 }
