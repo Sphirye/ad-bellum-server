@@ -1,9 +1,20 @@
-FROM docker.io/library/eclipse-temurin:17-jre-alpine
+# Usa una imagen de Gradle con JDK 17 para la fase de construcción
+FROM gradle:7.6.0-jdk17-alpine AS build
 
-ENV SERVICE_PORT=8080
+# Establece el directorio de trabajo en el contenedor
+WORKDIR /app
 
-COPY build/libs/*.jar /app.jar
+# Copia los archivos de código fuente al contenedor
+COPY . .
 
-EXPOSE $SERVICE_PORT
+# Ejecuta el comando de Gradle para construir el JAR
+RUN ./gradlew bootJar
 
-CMD java -Xmx2048m -Djava.security.egd=file<:/dev/urandom -jar /app.jar
+# Usa una imagen más liviana de JDK para ejecutar la aplicación
+FROM openjdk:17-alpine
+
+# Copia el JAR generado de la fase de construcción
+COPY --from=build /app/build/libs/*.jar app.jar
+
+# Define el entrypoint para ejecutar la aplicación
+ENTRYPOINT ["java", "-jar", "/app.jar"]
