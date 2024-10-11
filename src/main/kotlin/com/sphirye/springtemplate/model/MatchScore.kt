@@ -49,7 +49,7 @@ class MatchScore (
     }
 
     enum class Verdict {
-        POINT, AFTER_BLOW, DOUBLE, NO_EXCHANGE
+        POINT, DOUBLE, NO_EXCHANGE
     }
 
     @JsonIgnore
