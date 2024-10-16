@@ -25,6 +25,7 @@ class CorsFilter : Filter {
         val response = res as HttpServletResponse
         val request = req as HttpServletRequest
 
+        // Establece el origen específico en lugar de '*'
         response.setHeader("Access-Control-Allow-Origin", _corsOrigins)
         response.setHeader("Access-Control-Allow-Methods", _corsMethods)
         response.setHeader(
@@ -34,11 +35,13 @@ class CorsFilter : Filter {
         response.setHeader("Access-Control-Max-Age", "3600")
         response.setHeader("Access-Control-Expose-Headers", "X-Total-Count")
 
+        // Permitir credenciales (cookies, Authorization headers, etc.)
+        response.setHeader("Access-Control-Allow-Credentials", "true")
+
         if ("OPTIONS".equals(request.method, ignoreCase = true)) {
             response.status = HttpServletResponse.SC_OK
         } else {
             chain.doFilter(req, res)
         }
-
     }
 }
