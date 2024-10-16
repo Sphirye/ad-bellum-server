@@ -25,8 +25,14 @@ class CorsFilter : Filter {
         val response = res as HttpServletResponse
         val request = req as HttpServletRequest
 
-        // Establece el origen específico en lugar de '*'
-        response.setHeader("Access-Control-Allow-Origin", _corsOrigins)
+        val allowedOrigins = _corsOrigins.split(",")
+
+        // Verifica si el origen de la solicitud está permitido
+        val originHeader = request.getHeader("Origin")
+        if (originHeader != null && allowedOrigins.contains(originHeader)) {
+            response.setHeader("Access-Control-Allow-Origin", originHeader)
+        }
+
         response.setHeader("Access-Control-Allow-Methods", _corsMethods)
         response.setHeader(
             "Access-Control-Allow-Headers",
