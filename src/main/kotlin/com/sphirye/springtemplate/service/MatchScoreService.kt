@@ -22,9 +22,13 @@ class MatchScoreService(
         return entity
     }
 
+    override fun beforeDelete(id: Long) {
+        _validateMatchState(id)
+    }
+
     private fun _validateMatchState(id: Long) {
         if (_matchService.hasMatchFinished(id)) {
-            throw ConflictException("Scores from finished matches cannot be updated.")
+            throw ConflictException("Scores from finished matches cannot be modified.")
         }
     }
 
