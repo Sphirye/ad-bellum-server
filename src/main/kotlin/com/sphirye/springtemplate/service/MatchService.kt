@@ -13,10 +13,14 @@ class MatchService(
 ): BaseService<Match, Long>(_matchRepository) {
 
     override fun beforeUpdate(id: Long, entity: Match): Match {
-        if (_matchRepository.existsByIdAndState(id, Match.MatchState.FINISHED)) {
+        if (hasMatchFinished(id)) {
             throw ConflictException("Finished matches cannot be updated.")
         }
         return super.beforeUpdate(id, entity)
+    }
+
+    fun hasMatchFinished(id: Long): Boolean {
+        return _matchRepository.existsByIdAndState(id, Match.MatchState.FINISHED)
     }
 
 }
