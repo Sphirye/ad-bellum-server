@@ -49,4 +49,9 @@ class FencerController {
     ): Fencer {
         return _fencerService.update(id, fencer)
     }
+
+    @DeleteMapping("/fencer/{id}")
+    fun delete(@PathVariable id: Long) {
+        return _fencerService.deleteById(id)
+    }
 }
