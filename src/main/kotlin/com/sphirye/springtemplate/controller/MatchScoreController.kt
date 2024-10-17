@@ -40,4 +40,9 @@ class MatchScoreController {
         return _matchScoreService.update(id, matchScore)
     }
 
+    @DeleteMapping("/match-score/{id}")
+    fun delete(@PathVariable id: Long) {
+        return _matchScoreService.deleteById(id)
+    }
+
 }
