@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository
 @Repository
 interface MatchRepository : JpaRepository<Match, Long> {
 
+    fun existsByIdAndState(id: Long, state: Match.MatchState): Boolean
+
 }
