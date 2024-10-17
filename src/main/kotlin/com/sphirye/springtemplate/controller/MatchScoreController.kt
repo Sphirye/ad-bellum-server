@@ -32,4 +32,12 @@ class MatchScoreController {
         return _matchScoreService.create(matchScore)
     }
 
+    @PutMapping("/match-score/{id}")
+    fun update(
+        @PathVariable id: Long,
+        @Validated @RequestBody matchScore: MatchScore,
+    ): MatchScore {
+        return _matchScoreService.update(id, matchScore)
+    }
+
 }
