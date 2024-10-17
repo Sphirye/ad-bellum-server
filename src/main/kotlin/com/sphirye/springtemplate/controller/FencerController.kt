@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
 import org.springframework.http.HttpStatus
 import org.springframework.validation.annotation.Validated
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -41,7 +42,7 @@ class FencerController {
         return _fencerService.create(fencer)
     }
 
-    @PutMapping("/fencer/id")
+    @PutMapping("/fencer/{id}")
     fun update(
         @PathVariable id: Long,
         @Validated @RequestBody fencer: Fencer,
