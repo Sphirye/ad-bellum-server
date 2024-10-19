@@ -21,7 +21,7 @@ class MatchScore (
         entityName = "Fencer",
         primaryKey = "id",
     )
-    var scorer_id: Long? = null,
+    var scorerId: Long? = null,
 
     @field:NotNull
     var timestamp: String? = null,
@@ -43,7 +43,7 @@ class MatchScore (
     @field:NotNull
     var control: Boolean? = null,
 
-): Identifiable<Long> {
+    ): Identifiable<Long> {
     enum class PointType {
         CUT, THRUST, SLICE
     }
