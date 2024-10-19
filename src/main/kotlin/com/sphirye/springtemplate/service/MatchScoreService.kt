@@ -14,7 +14,6 @@ class MatchScoreService(
 
     override fun beforeCreate(entity: MatchScore): MatchScore {
         _validateMatchState(entity.matchId!!)
-        println(entity.scorerId)
         return entity
     }
 
