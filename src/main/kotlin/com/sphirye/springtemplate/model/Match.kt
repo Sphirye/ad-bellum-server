@@ -29,7 +29,7 @@ class Match (
     @Enumerated(EnumType.STRING)
     var state: MatchState? = null,
 
-): Identifiable<Long>, Serializable {
+): Identifiable<Long>, Serializable, Auditing() {
     enum class MatchState {
         WAITING, IN_PROGRESS, FINISHED
     }
