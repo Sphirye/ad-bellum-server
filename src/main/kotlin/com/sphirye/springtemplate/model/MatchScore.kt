@@ -5,6 +5,7 @@ import com.sphirye.shared.utils.Identifiable
 import com.sphirye.shared.web.annotation.EntityExists
 import jakarta.persistence.*
 import org.jetbrains.annotations.NotNull
+import java.io.Serializable
 
 @Entity
 class MatchScore (
@@ -43,7 +44,7 @@ class MatchScore (
     @field:NotNull
     var control: Boolean? = null,
 
-    ): Identifiable<Long> {
+    ): Identifiable<Long>, Serializable, Auditing() {
     enum class PointType {
         CUT, THRUST, SLICE
     }
