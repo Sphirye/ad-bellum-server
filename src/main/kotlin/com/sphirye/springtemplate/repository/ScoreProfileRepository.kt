@@ -1,9 +1,9 @@
 package com.sphirye.springtemplate.repository
 
-import com.sphirye.springtemplate.model.ProfileScore
+import com.sphirye.springtemplate.model.ScoreProfile
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface ProfileScoreRepository : JpaRepository<ProfileScore, Long> {
+interface ScoreProfileRepository : JpaRepository<ScoreProfile, Long> {
 }

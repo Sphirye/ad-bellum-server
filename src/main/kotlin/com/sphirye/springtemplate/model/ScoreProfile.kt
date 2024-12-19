@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull
 import java.io.Serializable
 
 @Entity
-class ProfileScore (
+class ScoreProfile (
     @Id
     @GeneratedValue
     override var id: Long? = null,

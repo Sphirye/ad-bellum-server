@@ -2,7 +2,7 @@ package com.sphirye.springtemplate.controller
 
 import com.sphirye.shared.web.annotation.Paged
 import com.sphirye.shared.web.annotation.Pager
-import com.sphirye.springtemplate.model.ProfileScore
+import com.sphirye.springtemplate.model.ScoreProfile
 import com.sphirye.springtemplate.service.ScoreProfileService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
@@ -22,23 +22,23 @@ class ScoreProfileController {
     private lateinit var _profileScoreService: ScoreProfileService
 
     @GetMapping("/score-profile/{id}")
-    fun getScoreProfile(@PathVariable id: Long): ProfileScore {
+    fun getScoreProfile(@PathVariable id: Long): ScoreProfile {
         return _profileScoreService.findById(id)
     }
 
     @Paged
     @GetMapping("/score-profile")
     fun getScoreProfile(
-        @ModelAttribute profileScore: ProfileScore,
+        @ModelAttribute profileScore: ScoreProfile,
         @Pager pageRequest: PageRequest,
-    ): Page<ProfileScore> {
+    ): Page<ScoreProfile> {
         return _profileScoreService.findAll(profileScore, pageRequest)
     }
 
     @PostMapping("/score-profile")
     fun postScoreProfile(
-        @Validated @RequestBody scoreProfileScore: ProfileScore,
-    ): ProfileScore {
+        @Validated @RequestBody scoreProfileScore: ScoreProfile,
+    ): ScoreProfile {
         return _profileScoreService.create(scoreProfileScore)
     }
 }
