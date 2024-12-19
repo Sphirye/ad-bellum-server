@@ -4,6 +4,7 @@ import com.sphirye.shared.utils.Identifiable
 import com.sphirye.shared.web.annotation.EntityExists
 import jakarta.persistence.*
 import net.minidev.json.annotate.JsonIgnore
+import org.jetbrains.annotations.NotNull
 import java.io.Serializable
 
 @Entity
@@ -29,10 +30,22 @@ class Match (
     @Enumerated(EnumType.STRING)
     var state: MatchState? = null,
 
+    @Column(name = "score_profile")
+    @field:EntityExists(
+        entityName = "ScoreProfile",
+        primaryKey = "id",
+    )
+    @field:NotNull
+    var scoreProfileId: Long? = null,
+
 ): Identifiable<Long>, Serializable, Auditing() {
     enum class MatchState {
         WAITING, IN_PROGRESS, FINISHED
     }
+
+    @ManyToOne
+    @JoinColumn(name = "score_profile", insertable = false, updatable = false)
+    var scoreProfile: ScoreProfile? = null
 
     @JsonIgnore
     @ManyToOne
