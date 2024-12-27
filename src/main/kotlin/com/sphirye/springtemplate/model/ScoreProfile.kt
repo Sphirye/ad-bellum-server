@@ -29,6 +29,12 @@ class ScoreProfile (
     var controls: Int? = null,
 
     @field:NotNull
+    var dobleoutLimit: Int? = null,
+
+    @field:NotNull
+    var pointsLimit: Int? = null,
+
+    @field:NotNull
     var timeLimitInSeconds: Int? = null,
 
 ): Identifiable<Long>, Serializable, Auditing()
