@@ -1,8 +1,9 @@
 package com.sphirye.springtemplate.model
 
 import com.sphirye.shared.utils.Identifiable
-import jakarta.persistence.Column
 import jakarta.persistence.Entity
+import jakarta.persistence.EnumType
+import jakarta.persistence.Enumerated
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.Id
 import org.jetbrains.annotations.NotNull
@@ -38,7 +39,12 @@ class ScoreProfile (
     @field:NotNull
     var timeLimitInSeconds: Int? = null,
 
-    @Column(nullable = false)
-    var base: Boolean? = false,
+    @Enumerated(EnumType.STRING)
+    @field:NotNull
+    var type: ScoreProfileType? = null,
 
-): Identifiable<Long>, Serializable, Auditing()
+    ): Identifiable<Long>, Serializable, Auditing() {
+    enum class ScoreProfileType {
+        TEMPLATE, INSTANCE
+    }
+}
