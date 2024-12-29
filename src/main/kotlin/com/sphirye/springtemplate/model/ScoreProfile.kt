@@ -1,6 +1,7 @@
 package com.sphirye.springtemplate.model
 
 import com.sphirye.shared.utils.Identifiable
+import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.Id
@@ -36,5 +37,8 @@ class ScoreProfile (
 
     @field:NotNull
     var timeLimitInSeconds: Int? = null,
+
+    @Column(nullable = false)
+    var base: Boolean? = false,
 
 ): Identifiable<Long>, Serializable, Auditing()
