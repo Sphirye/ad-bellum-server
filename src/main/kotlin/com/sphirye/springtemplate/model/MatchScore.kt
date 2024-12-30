@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 import com.sphirye.shared.utils.Identifiable
 import com.sphirye.shared.web.annotation.EntityExists
 import jakarta.persistence.*
-import org.jetbrains.annotations.NotNull
+import jakarta.validation.constraints.NotNull
 import java.io.Serializable
 
 @Entity
