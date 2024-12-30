@@ -3,8 +3,8 @@ package com.sphirye.springtemplate.model
 import com.sphirye.shared.utils.Identifiable
 import com.sphirye.shared.web.annotation.EntityExists
 import jakarta.persistence.*
+import jakarta.validation.constraints.NotNull
 import net.minidev.json.annotate.JsonIgnore
-import org.jetbrains.annotations.NotNull
 import java.io.Serializable
 
 @Entity
@@ -18,6 +18,7 @@ class Match (
         entityName = "Fencer",
         primaryKey = "id",
     )
+    @field:NotNull
     var fencer_1_id: Long? = null,
 
     @Column(name = "fencer_2", nullable = false)
@@ -25,12 +26,13 @@ class Match (
         entityName = "Fencer",
         primaryKey = "id",
     )
+    @field:NotNull
     var fencer_2_id: Long? = null,
 
     @Enumerated(EnumType.STRING)
     var state: MatchState? = null,
 
-    @Column(name = "score_profile")
+    @Column(name = "score_profile", nullable = false)
     @field:EntityExists(
         entityName = "ScoreProfile",
         primaryKey = "id",
@@ -44,7 +46,7 @@ class Match (
     }
 
     @ManyToOne
-    @JoinColumn(name = "score_profile", insertable = false, updatable = false)
+    @JoinColumn(name = "score_profile", insertable = false, updatable = false, nullable = false)
     var scoreProfile: ScoreProfile? = null
 
     @JsonIgnore

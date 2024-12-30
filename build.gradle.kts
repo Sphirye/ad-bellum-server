@@ -32,6 +32,8 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	kapt("org.hibernate:hibernate-jpamodelgen:6.1.7.Final")
 
+	implementation("jakarta.validation:jakarta.validation-api")
+
 	//DATABASE
 	runtimeOnly("com.h2database:h2")
 	runtimeOnly("org.postgresql:postgresql")
