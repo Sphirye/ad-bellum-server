@@ -12,7 +12,14 @@ import org.springframework.stereotype.Service
 @Service
 class MatchService(
     private val _matchRepository: MatchRepository,
+    private val _scoreProfileService: ScoreProfileService,
 ): BaseService<Match, Long>(_matchRepository) {
+
+    override fun beforeCreate(entity: Match): Match {
+        val instancedScoreProfile = _scoreProfileService.instanceScoreProfile(entity.scoreProfileId!!)
+        entity.scoreProfileId = instancedScoreProfile.id
+        return entity
+    }
 
     override fun beforeUpdate(id: Long, entity: Match): Match {
         if (hasMatchFinished(id)) {
