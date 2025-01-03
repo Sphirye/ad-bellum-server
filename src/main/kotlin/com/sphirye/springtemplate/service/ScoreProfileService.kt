@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service
 
 @Service
 class ScoreProfileService(
-    private val _ScoreProfileRepository: ScoreProfileRepository,
-): BaseService<ScoreProfile, Long>(_ScoreProfileRepository) {
+    private val _scoreProfileRepository: ScoreProfileRepository,
+): BaseService<ScoreProfile, Long>(_scoreProfileRepository) {
 
     fun instance(scoreProfile: ScoreProfile): ScoreProfile {
         scoreProfile.type = ScoreProfileType.INSTANCE
