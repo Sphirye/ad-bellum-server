@@ -34,9 +34,9 @@ class MatchScore (
     )
     var matchId: Long? = null,
 
-    var afterblow: Boolean? = false,
+    var afterblow: Boolean? = null,
 
-    var control: Boolean? = false,
+    var control: Boolean? = null,
 
     ): Identifiable<Long>, Serializable, Auditing() {
     enum class PointType {
