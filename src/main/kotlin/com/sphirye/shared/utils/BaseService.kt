@@ -33,7 +33,12 @@ abstract class BaseService<T : Identifiable<ID>, ID : Any>(
 
     open fun findAll(entity: T?, pageable: Pageable): Page<T> {
         return if (entity != null) {
-            return repository.findAll(Example.of(entity, ExampleMatcher.matchingAny()), pageable)
+            val matcher = ExampleMatcher
+                .matchingAny()
+                .withIgnoreNullValues()
+                .withIgnoreCase()
+                .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING)
+            return repository.findAll(Example.of(entity, matcher), pageable)
         } else {
             findAll(pageable)
         }
