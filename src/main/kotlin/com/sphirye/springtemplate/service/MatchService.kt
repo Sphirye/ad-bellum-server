@@ -18,7 +18,8 @@ class MatchService(
 
     @Transactional
     override fun beforeCreate(entity: Match): Match {
-        _scoreProfileService.instance(entity.scoreProfile!!)
+        val scoreProfile = _scoreProfileService.instance(entity.scoreProfile!!)
+        entity.scoreProfileId = scoreProfile.id
         return entity
     }
 

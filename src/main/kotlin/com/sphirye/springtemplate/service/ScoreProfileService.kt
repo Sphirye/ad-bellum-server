@@ -13,6 +13,7 @@ class ScoreProfileService(
 
     fun instance(scoreProfile: ScoreProfile): ScoreProfile {
         scoreProfile.type = ScoreProfileType.INSTANCE
+        scoreProfile.id = null
         return create(scoreProfile)
     }
 
