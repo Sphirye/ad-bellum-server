@@ -37,7 +37,6 @@ class Match (
         entityName = "ScoreProfile",
         primaryKey = "id",
     )
-    @field:NotNull
     var scoreProfileId: Long? = null,
 
 ): Identifiable<Long>, Serializable, Auditing() {

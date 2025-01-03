@@ -6,7 +6,6 @@ import jakarta.persistence.EnumType
 import jakarta.persistence.Enumerated
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.Id
-import jakarta.validation.constraints.NotNull
 import java.io.Serializable
 
 @Entity
@@ -15,32 +14,23 @@ class ScoreProfile (
     @GeneratedValue
     override var id: Long? = null,
 
-    @field:NotNull
     var name: String? = null,
 
-    @field:NotNull
-    var thrusts: Int? = null,
+    var thrusts: Int? = 0,
 
-    @field:NotNull
-    var cuts: Int? = null,
+    var cuts: Int? = 0,
 
-    @field:NotNull
-    var slices: Int? = null,
+    var slices: Int? = 0,
 
-    @field:NotNull
-    var controls: Int? = null,
+    var controls: Int? = 0,
 
-    @field:NotNull
-    var dobleoutLimit: Int? = null,
+    var dobleoutLimit: Int? = 0,
 
-    @field:NotNull
-    var pointsLimit: Int? = null,
+    var pointsLimit: Int? = 0,
 
-    @field:NotNull
-    var timeLimitInSeconds: Int? = null,
+    var timeLimitInSeconds: Int? = 0,
 
     @Enumerated(EnumType.STRING)
-    @field:NotNull
     var type: ScoreProfileType? = null,
 
     ): Identifiable<Long>, Serializable, Auditing() {

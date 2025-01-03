@@ -8,11 +8,20 @@ import com.sphirye.springtemplate.repository.specification.MatchSpecification
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class MatchService(
     private val _matchRepository: MatchRepository,
+    private val _scoreProfileService: ScoreProfileService,
 ): BaseService<Match, Long>(_matchRepository) {
+
+    @Transactional
+    override fun beforeCreate(entity: Match): Match {
+        val scoreProfile = _scoreProfileService.instance(entity.scoreProfile!!)
+        entity.scoreProfileId = scoreProfile.id
+        return entity
+    }
 
     override fun beforeUpdate(id: Long, entity: Match): Match {
         if (hasMatchFinished(id)) {
