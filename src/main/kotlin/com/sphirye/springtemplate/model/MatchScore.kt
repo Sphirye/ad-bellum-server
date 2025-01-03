@@ -13,7 +13,6 @@ class MatchScore (
     @GeneratedValue
     override var id: Long? = null,
 
-    @field:NotNull
     @Enumerated(EnumType.STRING)
     var type: PointType? = null,
 
@@ -23,9 +22,6 @@ class MatchScore (
         primaryKey = "id",
     )
     var scorerId: Long? = null,
-
-    @field:NotNull
-    var timestamp: String? = null,
 
     @field:NotNull
     @Enumerated(EnumType.STRING)
@@ -38,11 +34,9 @@ class MatchScore (
     )
     var matchId: Long? = null,
 
-    @field:NotNull
-    var afterblow: Boolean? = null,
+    var afterblow: Boolean? = false,
 
-    @field:NotNull
-    var control: Boolean? = null,
+    var control: Boolean? = false,
 
     ): Identifiable<Long>, Serializable, Auditing() {
     enum class PointType {
