@@ -38,13 +38,21 @@ class MatchScore (
 
     var control: Boolean? = null,
 
-    ): Identifiable<Long>, Serializable, Auditing() {
+    @Enumerated(EnumType.STRING)
+    var region: RegionType? = null
+
+): Identifiable<Long>, Serializable, Auditing() {
+
     enum class PointType {
         CUT, THRUST, SLICE
     }
 
     enum class Verdict {
         POINT, DOUBLE, NO_EXCHANGE
+    }
+
+    enum class RegionType {
+        HEAD, ARM, HAND, CHEST, LEG
     }
 
     @JsonIgnore
