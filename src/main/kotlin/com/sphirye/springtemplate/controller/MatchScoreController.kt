@@ -20,7 +20,7 @@ class MatchScoreController {
     @GetMapping("/match-score")
     fun getScores(
         @Pager pageRequest: PageRequest,
-        @ModelAttribute matchScore: MatchScore,
+        @ModelAttribute matchScore: MatchScore?,
     ): Page<MatchScore> {
         return _matchScoreService.findAll(matchScore, pageRequest)
     }

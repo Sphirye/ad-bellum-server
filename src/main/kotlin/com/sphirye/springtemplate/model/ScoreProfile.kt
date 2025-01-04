@@ -6,6 +6,7 @@ import jakarta.persistence.EnumType
 import jakarta.persistence.Enumerated
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.Id
+import org.hibernate.annotations.ColumnDefault
 import java.io.Serializable
 
 @Entity
@@ -16,19 +17,26 @@ class ScoreProfile (
 
     var name: String? = null,
 
-    var thrusts: Int? = 0,
+    @ColumnDefault("0")
+    var thrusts: Int? = null,
 
-    var cuts: Int? = 0,
+    @ColumnDefault("0")
+    var cuts: Int? = null,
 
-    var slices: Int? = 0,
+    @ColumnDefault("0")
+    var slices: Int? = null,
 
-    var controls: Int? = 0,
+    @ColumnDefault("0")
+    var controls: Int? = null,
 
-    var dobleoutLimit: Int? = 0,
+    @ColumnDefault("0")
+    var dobleoutLimit: Int? = null,
 
-    var pointsLimit: Int? = 0,
+    @ColumnDefault("0")
+    var pointsLimit: Int? = null,
 
-    var timeLimitInSeconds: Int? = 0,
+    @ColumnDefault("0")
+    var timeLimitInSeconds: Int? = null,
 
     @Enumerated(EnumType.STRING)
     var type: ScoreProfileType? = null,
