@@ -29,6 +29,8 @@ class ScoreProfile (
     @ColumnDefault("0")
     var controls: Int? = null,
 
+    var afterblow: Int? = null,
+
     @ColumnDefault("0")
     var dobleoutLimit: Int? = null,
 
