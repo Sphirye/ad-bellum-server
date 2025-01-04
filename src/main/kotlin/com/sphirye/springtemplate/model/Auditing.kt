@@ -14,12 +14,14 @@ import java.time.LocalDateTime
 open class Auditing : Serializable {
 
     @CreatedDate
+    @Column(updatable = false, nullable = false)
     var createdDate: LocalDateTime? = null
 
     @LastModifiedDate
     var lastModifiedDate: LocalDateTime? = null
 
     @CreatedBy
+    @Column(updatable = false, nullable = false)
     var createdBy: Long? = null
 
     @LastModifiedBy
