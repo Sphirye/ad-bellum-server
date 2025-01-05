@@ -1,11 +1,13 @@
 package com.sphirye.springtemplate.model
 
 import com.sphirye.shared.utils.Identifiable
+import jakarta.persistence.CascadeType
 import jakarta.persistence.Entity
 import jakarta.persistence.EnumType
 import jakarta.persistence.Enumerated
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.Id
+import jakarta.persistence.OneToMany
 import org.hibernate.annotations.ColumnDefault
 import java.io.Serializable
 
@@ -42,6 +44,9 @@ class ScoreProfile (
 
     @Enumerated(EnumType.STRING)
     var type: ScoreProfileType? = null,
+
+    @OneToMany(cascade = [CascadeType.ALL])
+    var overrides: MutableList<ScoreOverride> = mutableListOf()
 
     ): Identifiable<Long>, Serializable, Auditing() {
     enum class ScoreProfileType {
