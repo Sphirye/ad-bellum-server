@@ -39,6 +39,8 @@ class ScoreProfile (
     @ColumnDefault("0")
     var pointsLimit: Int? = null,
 
+    var isTimed: Boolean? = null,
+
     @ColumnDefault("0")
     var timeLimitInSeconds: Int? = null,
 
