@@ -39,8 +39,6 @@ class Match (
     )
     var scoreProfileId: Long? = null,
 
-    var time: Int? = null,
-
     var timeLeft: Int? = null,
 
 ): Identifiable<Long>, Serializable, Auditing() {
