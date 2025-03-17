@@ -17,4 +17,10 @@ class ScoreProfileService(
         return create(scoreProfile)
     }
 
+    fun updateTimeLeft(id: Long, timeLeft: Int): ScoreProfile {
+        val scoreProfile = findById(id)
+        scoreProfile.timeLeft = timeLeft
+        return _scoreProfileRepository.save(scoreProfile)
+    }
+
 }
