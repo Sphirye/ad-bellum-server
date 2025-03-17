@@ -46,6 +46,8 @@ class ScoreProfile (
     @ColumnDefault("0")
     var timeLimitInSeconds: Int? = null,
 
+    var timeLeft: Int? = null,
+
     @Enumerated(EnumType.STRING)
     var type: ScoreProfileType? = null,
 
