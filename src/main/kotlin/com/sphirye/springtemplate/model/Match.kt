@@ -39,6 +39,8 @@ class Match (
     )
     var scoreProfileId: Long? = null,
 
+    var timeLeft: Int? = null,
+
 ): Identifiable<Long>, Serializable, Auditing() {
     enum class MatchState {
         WAITING, IN_PROGRESS, FINISHED

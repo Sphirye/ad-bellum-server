@@ -2,6 +2,7 @@ package com.sphirye.springtemplate.model
 
 import com.sphirye.shared.utils.Identifiable
 import jakarta.persistence.CascadeType
+import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.EnumType
 import jakarta.persistence.Enumerated
@@ -39,8 +40,13 @@ class ScoreProfile (
     @ColumnDefault("0")
     var pointsLimit: Int? = null,
 
+    @Column(nullable = false)
+    var timed: Boolean? = null,
+
     @ColumnDefault("0")
     var timeLimitInSeconds: Int? = null,
+
+    var timeLeft: Int? = null,
 
     @Enumerated(EnumType.STRING)
     var type: ScoreProfileType? = null,
