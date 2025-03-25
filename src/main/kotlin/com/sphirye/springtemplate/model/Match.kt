@@ -50,6 +50,9 @@ class Match (
     @JoinColumn(name = "score_profile", insertable = false, updatable = false, nullable = false)
     var scoreProfile: ScoreProfile? = null
 
+    @OneToMany(mappedBy = "match")
+    var scores: List<MatchScore>? = null
+
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "fencer_1", insertable = false, updatable = false)
