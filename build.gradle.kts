@@ -7,7 +7,7 @@ plugins {
 	kotlin("jvm") version "1.8.22"
 	kotlin("plugin.spring") version "1.8.22"
 	kotlin("plugin.jpa") version "1.8.22"
-	kotlin("kapt") version "1.5.10"
+	kotlin("kapt") version "1.8.22"
 }
 
 group = "com.sphirye"
@@ -51,6 +51,20 @@ dependencies {
 	}
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+}
+
+kapt {
+	arguments {
+		arg("jpa.modelgen.internal.fullyAnnotationConfigured", "true")
+	}
+}
+
+sourceSets {
+	main {
+		java {
+			srcDir("build/generated/source/kapt/main")
+		}
+	}
 }
 
 tasks.withType<KotlinCompile> {
