@@ -7,10 +7,12 @@ import jakarta.persistence.EnumType
 import jakarta.persistence.Enumerated
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.Id
+import jakarta.persistence.Table
 import jakarta.validation.constraints.NotNull
 import java.io.Serializable
 
 @Entity
+@Table(name = "score_overrides")
 class ScoreOverride (
     @Id
     @GeneratedValue

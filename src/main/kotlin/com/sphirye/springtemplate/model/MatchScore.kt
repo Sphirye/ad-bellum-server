@@ -8,6 +8,7 @@ import jakarta.validation.constraints.NotNull
 import java.io.Serializable
 
 @Entity
+@Table(name = "match_scores")
 class MatchScore (
     @Id
     @GeneratedValue

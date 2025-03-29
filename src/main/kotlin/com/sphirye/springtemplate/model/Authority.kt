@@ -6,6 +6,7 @@ import jakarta.persistence.*
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 
 @Entity
+@Table(name = "authorities")
 class Authority (
 
     @Id
