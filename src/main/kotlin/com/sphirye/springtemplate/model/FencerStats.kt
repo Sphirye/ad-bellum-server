@@ -3,19 +3,21 @@ package com.sphirye.springtemplate.model
 import java.time.LocalDateTime
 
 interface FencerStats {
-    val totalPoints: Int?
 
-    val totalThrusts: Int?
+    fun getTotalPoints(): Int?
 
-    val totalCuts: Int?
+    fun getTotalThrusts(): Int?
 
-    val totalSlices: Int?
+    fun getTotalCuts(): Int?
 
-    val totalDoubles: Int?
+    fun getTotalSlices(): Int?
 
-    val totalControls: Int?
+    fun getTotalDoubles(): Int?
 
-    val totalAfterblows: Int?
+    fun getTotalControls(): Int?
 
-    val fromDate: LocalDateTime?
+    fun getTotalAfterblows(): Int?
+
+    fun getFromDate(): LocalDateTime?
+
 }
