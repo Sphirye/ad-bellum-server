@@ -2,6 +2,7 @@ package com.sphirye.springtemplate.service
 
 import com.sphirye.shared.utils.BaseService
 import com.sphirye.springtemplate.model.Fencer
+import com.sphirye.springtemplate.model.FencerStats
 import com.sphirye.springtemplate.repository.FencerRepository
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
@@ -18,6 +19,10 @@ class FencerService(
         } else {
             _fencerRepository.findAllByNameIgnoreCaseContaining(name, pageRequest)
         }
+    }
+
+    fun getFencerStats(fencerId: Long): FencerStats {
+        return _fencerRepository.getFencerStats(fencerId)
     }
 
 }
