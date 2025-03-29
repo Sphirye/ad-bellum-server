@@ -27,6 +27,11 @@ class FencerController {
     @Autowired
     private lateinit var _fencerService: FencerService
 
+    @GetMapping("/fencer/{id}")
+    fun getFencer(@PathVariable id: Long): Fencer {
+        return _fencerService.findById(id)
+    }
+
     @Paged
     @GetMapping("/fencer")
     fun getFencers(
