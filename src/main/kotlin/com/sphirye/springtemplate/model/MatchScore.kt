@@ -8,15 +8,17 @@ import jakarta.validation.constraints.NotNull
 import java.io.Serializable
 
 @Entity
+@Table(name = "match_scores")
 class MatchScore (
     @Id
     @GeneratedValue
     override var id: Long? = null,
 
+    @Column(name = "point_type")
     @Enumerated(EnumType.STRING)
     var type: PointType? = null,
 
-    @Column(name = "scorer")
+    @Column(name = "scorer_id")
     @field:EntityExists(
         entityName = "Fencer",
         primaryKey = "id",
@@ -61,6 +63,6 @@ class MatchScore (
     var match: Match? = null
 
     @ManyToOne
-    @JoinColumn(name = "scorer", insertable = false, updatable = false)
+    @JoinColumn(name = "scorer_id", insertable = false, updatable = false)
     var scorer: Fencer? = null
 }

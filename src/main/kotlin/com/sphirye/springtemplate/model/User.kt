@@ -8,7 +8,7 @@ import jakarta.validation.constraints.NotNull
 import java.io.Serializable
 
 @Entity
-@Table(name = "_user")
+@Table(name = "_users")
 class User(
     @Id
     @GeneratedValue

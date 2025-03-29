@@ -8,6 +8,7 @@ import net.minidev.json.annotate.JsonIgnore
 import java.io.Serializable
 
 @Entity
+@Table(name = "matches")
 class Match (
     @Id
     @GeneratedValue

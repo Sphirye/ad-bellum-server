@@ -4,10 +4,12 @@ import com.sphirye.shared.utils.Identifiable
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.Id
+import jakarta.persistence.Table
 import jakarta.validation.constraints.NotNull
 import java.io.Serializable
 
 @Entity
+@Table(name = "fencers")
 class Fencer (
     @Id
     @GeneratedValue

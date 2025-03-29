@@ -3,6 +3,7 @@ package com.sphirye.springtemplate.controller
 import com.sphirye.shared.web.annotation.Paged
 import com.sphirye.shared.web.annotation.Pager
 import com.sphirye.springtemplate.model.Fencer
+import com.sphirye.springtemplate.model.FencerStats
 import com.sphirye.springtemplate.service.FencerService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
@@ -11,6 +12,7 @@ import org.springframework.http.HttpStatus
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.ModelAttribute
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
@@ -25,6 +27,11 @@ class FencerController {
     @Autowired
     private lateinit var _fencerService: FencerService
 
+    @GetMapping("/fencer/{id}")
+    fun getFencer(@PathVariable id: Long): Fencer {
+        return _fencerService.findById(id)
+    }
+
     @Paged
     @GetMapping("/fencer")
     fun getFencers(
@@ -32,6 +39,14 @@ class FencerController {
         @RequestParam(required = false) search: String?,
     ): Page<Fencer> {
         return _fencerService.searchByName(search, pageRequest)
+    }
+
+    @GetMapping("/fencer/{id}/stats")
+    fun getFencerStats(
+        @PathVariable id: Long,
+        @ModelAttribute fencerStats: FencerStats,
+    ): FencerStats {
+        return _fencerService.getFencerStats(id)
     }
 
     @PostMapping("/fencer")
