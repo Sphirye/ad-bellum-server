@@ -6,9 +6,9 @@ import jakarta.persistence.criteria.Root
 import org.springframework.data.jpa.domain.Specification
 
 class MatchExample (
-    var fencer1Id: Long? = null,
+    var fencer_1_id: Long? = null,
 
-    var fencer2Id: Long? = null,
+    var fencer_2_id: Long? = null,
 
     var state: Match.MatchState? = null,
 
@@ -16,14 +16,14 @@ class MatchExample (
 
     var createdBy: String? = null,
 
-) {
+    ) {
     fun toSpecification(): Specification<Match> {
         return Specification { root, query, cb ->
             val predicates = mutableListOf<Predicate>()
 
-            fencer1Id?.let { _equalsFencerId(it, root, cb) }
+            fencer_1_id?.let { predicates.add(_equalsFencerId(it, root, cb)) }
 
-            fencer2Id?.let {_equalsFencerId(it, root, cb) }
+            fencer_2_id?.let { predicates.add(_equalsFencerId(it, root, cb)) }
 
             state?.let { predicates.add(cb.equal(root.get<Match.MatchState>(Match_.STATE), it)) }
 
