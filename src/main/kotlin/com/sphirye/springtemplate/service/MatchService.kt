@@ -3,8 +3,8 @@ package com.sphirye.springtemplate.service
 import com.sphirye.shared.exception.exceptions.ConflictException
 import com.sphirye.shared.utils.BaseService
 import com.sphirye.springtemplate.model.Match
+import com.sphirye.springtemplate.model.MatchExample
 import com.sphirye.springtemplate.repository.MatchRepository
-import com.sphirye.springtemplate.repository.specification.MatchSpecification
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
@@ -30,9 +30,12 @@ class MatchService(
         return super.beforeUpdate(id, entity)
     }
 
-    override fun findAll(entity: Match?, pageable: Pageable): Page<Match> {
-        return if (entity != null) {
-            _matchRepository.findAll(MatchSpecification.query(entity), pageable)
+    fun findAll(
+        example: MatchExample? = null,
+        pageable: Pageable,
+    ): Page<Match> {
+        return if (example != null) {
+            _matchRepository.findAll(example.toSpecification(), pageable)
         } else {
             _matchRepository.findAll(pageable)
         }

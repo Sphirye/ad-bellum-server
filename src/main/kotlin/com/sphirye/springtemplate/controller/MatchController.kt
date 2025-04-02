@@ -3,6 +3,7 @@ package com.sphirye.springtemplate.controller
 import com.sphirye.shared.web.annotation.Paged
 import com.sphirye.shared.web.annotation.Pager
 import com.sphirye.springtemplate.model.Match
+import com.sphirye.springtemplate.model.MatchExample
 import com.sphirye.springtemplate.service.MatchService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
@@ -25,10 +26,10 @@ class MatchController {
     @Paged
     @GetMapping("/match")
     fun getMatches(
-        @ModelAttribute match: Match,
+        @ModelAttribute example: MatchExample,
         @Pager pageRequest: PageRequest,
     ): Page<Match> {
-        return _matchService.findAll(match, pageRequest)
+        return _matchService.findAll(example, pageRequest)
     }
 
     @PostMapping("/match")
