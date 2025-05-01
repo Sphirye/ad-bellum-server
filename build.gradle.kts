@@ -43,6 +43,9 @@ dependencies {
 	implementation("io.jsonwebtoken:jjwt-impl:0.11.5")
 	implementation("io.jsonwebtoken:jjwt-api:0.11.5")
 
+	//SWAGGER
+	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
+
 	// TEST
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
