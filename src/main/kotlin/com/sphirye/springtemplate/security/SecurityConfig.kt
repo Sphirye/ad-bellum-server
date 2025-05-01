@@ -50,6 +50,13 @@ class SecurityConfig {
                 authz
                     .requestMatchers("/error").permitAll()
                     .requestMatchers("/auth/login").permitAll()
+                    .requestMatchers(
+                        "/swagger-ui.html",
+                        "/swagger-ui/**",
+                        "/api-docs",
+                        "/api-docs/**",
+                        "/v3/api-docs/**"
+                    ).permitAll()
                     .anyRequest().authenticated()
             }
 
