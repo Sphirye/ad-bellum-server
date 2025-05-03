@@ -30,8 +30,12 @@ class Match (
     @field:NotNull
     var fencer_2_id: Long? = null,
 
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     var state: MatchState? = null,
+
+    @Enumerated(EnumType.STRING)
+    var resolution: MatchResolution? = null,
 
     @Column(name = "score_profile", nullable = false)
     @field:EntityExists(
@@ -45,6 +49,16 @@ class Match (
 ): Identifiable<Long>, Serializable, Auditing() {
     enum class MatchState {
         WAITING, IN_PROGRESS, FINISHED
+    }
+
+    enum class MatchResolution {
+        POINTS_REACHED,
+        DOUBLE_OUT,
+        TIME_OUT,
+        WITHDRAWAL,
+        DISQUALIFICATION,
+        INJURY,
+        OTHER,
     }
 
     @ManyToOne
