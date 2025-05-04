@@ -30,6 +30,15 @@ class MatchService(
         return super.beforeUpdate(id, entity)
     }
 
+    fun finish(id: Long, entity: Match): Match {
+        val match = findById(id)
+
+        match.state = entity.state
+        match.resolution = entity.resolution
+
+        return update(id, match)
+    }
+
     fun findAll(
         example: MatchExample? = null,
         pageable: Pageable,

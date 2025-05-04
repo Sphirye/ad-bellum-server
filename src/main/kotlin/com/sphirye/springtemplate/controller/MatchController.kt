@@ -49,6 +49,15 @@ class MatchController {
         return _matchService.update(id, match)
     }
 
+    @PatchMapping("/match/{id}/finish")
+    @ResponseStatus(HttpStatus.OK)
+    fun finishMatch(
+        @PathVariable id: Long,
+        @RequestBody match: Match,
+    ): Match {
+        return _matchService.finish(id, match)
+    }
+
     @DeleteMapping("/match/{id}")
     fun delete(@PathVariable id: Long) {
         return _matchService.deleteById(id)
