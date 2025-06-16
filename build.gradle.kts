@@ -18,6 +18,7 @@ java {
 
 repositories {
 	mavenCentral()
+	maven("https://repo.spring.io/milestone")
 }
 
 dependencies {
@@ -35,7 +36,7 @@ dependencies {
 
 	//DATABASE
 	runtimeOnly("com.h2database:h2")
-	runtimeOnly("org.postgresql:postgresql")
+	implementation("org.mariadb.jdbc:mariadb-java-client")
 
 	//JWT
 	runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.5")
