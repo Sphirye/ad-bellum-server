@@ -1,0 +1,35 @@
+services:
+  mariadb:
+    image: mariadb
+    container_name: ad-bellum-db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DATASOURCE_PASSWORD}
+      MYSQL_DATABASE: adbellumdb
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./database/mysql:/var/lib/mysql:rw
+    networks:
+      - ad-bellum
+    restart: always
+    env_file:
+      - .env
+
+
+  spring:
+    build: .
+    container_name: ad-bellum-server
+    ports:
+      - "8080:8080"
+    restart: always
+    networks:
+      - ad-bellum
+    depends_on:
+      - mariadb
+    env_file:
+      - .env
+
+networks:
+  ad-bellum:
+    external: true
+    driver: bridge

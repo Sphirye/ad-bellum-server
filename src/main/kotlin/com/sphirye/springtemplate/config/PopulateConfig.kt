@@ -26,8 +26,8 @@ class PopulateConfig {
     @PostConstruct
     fun init() {
         Authority.Role.values().forEach {
-            if (!_authorityRepository.existsById(it)) {
-                _authorityRepository.save(Authority(id = it))
+            if (!_authorityRepository.existsByRole(it)) {
+                _authorityRepository.save(Authority(role = it))
             }
         }
 
