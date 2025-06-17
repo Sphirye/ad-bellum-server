@@ -10,9 +10,13 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority
 class Authority (
 
     @Id
+    @GeneratedValue
+    override var id: Long? = null,
+
+
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    override var id: Role?,
+    @Column(nullable = false, unique = true)
+    var role: Role,
 
     var description: String? = null,
 
@@ -23,14 +27,14 @@ class Authority (
     @Column(nullable = false)
     var enabled: Boolean? = true,
 
-    ): Identifiable<Authority.Role> {
+    ): Identifiable<Long> {
     enum class Role {
         SUPER_ADMIN, ADMIN, MOD
     }
 
     companion object {
         fun getSimpleGrantedAuthoritiesFrom(authorities: MutableSet<Authority>): List<SimpleGrantedAuthority> {
-            return authorities.map { it.id.toString() }.map { SimpleGrantedAuthority(it) }
+            return authorities.map { it.role.toString() }.map { SimpleGrantedAuthority(it) }
         }
     }
 }

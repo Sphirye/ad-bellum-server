@@ -9,14 +9,14 @@ import org.springframework.stereotype.Service
 @Service
 class AuthorityService(
     private var _authorityRepository: AuthorityRepository,
-): BaseService<Authority, Authority.Role>(_authorityRepository) {
+): BaseService<Authority, Long>(_authorityRepository) {
 
     fun findByRole(role: Authority.Role): Authority {
-        return _authorityRepository.getReferenceById(role)
+        return _authorityRepository.findByRole(role)
     }
 
     fun existsByRole(role: Authority.Role): Boolean {
-        return _authorityRepository.existsById(role)
+        return _authorityRepository.existsByRole(role)
     }
 
 }
