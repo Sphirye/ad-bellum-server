@@ -12,7 +12,9 @@ abstract class BaseService<T : Identifiable<ID>, ID : Any>(
 ) {
     open fun create(entity: T): T {
         val modifiedEntity = beforeCreate(entity)
-        return repository.save(modifiedEntity!!)
+        val createdEntity = repository.save(modifiedEntity!!)
+        afterCreated(createdEntity)
+        return createdEntity
     }
 
     open fun update(id: ID, entity: T): T {
@@ -64,6 +66,8 @@ abstract class BaseService<T : Identifiable<ID>, ID : Any>(
     }
 
     open fun beforeDelete(id: ID) { }
+
+    open fun afterCreated(entity: T) { }
 
     private fun _validateResourceExistsById(id: ID) {
         if (!existsById(id)) {
