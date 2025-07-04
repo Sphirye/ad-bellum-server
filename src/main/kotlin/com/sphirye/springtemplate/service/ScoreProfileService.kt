@@ -17,11 +17,7 @@ class ScoreProfileService(
 
     @Transactional
     override fun afterCreated(entity: ScoreProfile) {
-        entity.penalties?.forEach {
-            it.type = PenaltyType.TEMPLATE
-            it.scoreProfileId = entity.id
-            _penaltyService.create(it)
-        }
+        _penaltyService.createFromScoreProfile(entity)
     }
 
     fun instance(scoreProfile: ScoreProfile): ScoreProfile {
@@ -35,5 +31,6 @@ class ScoreProfileService(
         scoreProfile.timeLeft = timeLeft
         return _scoreProfileRepository.save(scoreProfile)
     }
+
 
 }
