@@ -27,7 +27,8 @@ class Penalty (
     )
     var scoreId: Long? = null,
 
-    @Column(name = "score_profile")
+    @Column(name = "score_profile", nullable = false)
+    @field:NotNull
     @field:EntityExists(
         entityName = "ScoreProfile",
         primaryKey = "id",
@@ -36,13 +37,6 @@ class Penalty (
 
     @Column(nullable = false)
     var title: String? = null,
-
-    @Column(name = "fencer")
-    @field:EntityExists(
-        entityName = "Fencer",
-        primaryKey = "id",
-    )
-    var fencerId: Long? = null,
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
@@ -61,11 +55,6 @@ class Penalty (
     enum class PenaltyType {
         TEMPLATE, INSTANCE
     }
-
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "fencer", insertable = false, updatable = false)
-    var fencer: Fencer? = null
 
     @JsonIgnore
     @ManyToOne
