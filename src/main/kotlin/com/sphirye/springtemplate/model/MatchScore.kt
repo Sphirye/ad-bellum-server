@@ -65,4 +65,7 @@ class MatchScore (
     @ManyToOne
     @JoinColumn(name = "scorer_id", insertable = false, updatable = false)
     var scorer: Fencer? = null
+
+    @OneToMany(mappedBy = "score")
+    var penalties: List<Penalty>? = null
 }

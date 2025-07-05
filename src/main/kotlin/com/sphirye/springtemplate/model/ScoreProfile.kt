@@ -60,4 +60,7 @@ class ScoreProfile (
     enum class ScoreProfileType {
         TEMPLATE, INSTANCE
     }
+
+    @OneToMany(mappedBy = "scoreProfile", cascade = [CascadeType.MERGE], orphanRemoval = true)
+    var penalties: List<Penalty>? = null
 }
