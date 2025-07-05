@@ -46,10 +46,6 @@ class Penalty (
     @field:NotNull
     var value: Int? = null,
 
-    @Column(nullable = false)
-    @field:NotNull
-    var severity: Int? = null,
-
 ): Identifiable<Long>, Serializable, Auditing() {
 
     enum class PenaltyType {
