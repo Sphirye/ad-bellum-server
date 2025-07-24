@@ -41,7 +41,7 @@ class MatchScore (
     var control: Boolean? = null,
 
     @Enumerated(EnumType.STRING)
-    var region: RegionType? = null
+    var region: RegionType? = null,
 
 ): Identifiable<Long>, Serializable, Auditing() {
 
@@ -67,5 +67,5 @@ class MatchScore (
     var scorer: Fencer? = null
 
     @OneToMany(mappedBy = "score")
-    var penalties: List<Penalty>? = null
+    var penalties: MutableList<PenaltyRecords>? = null
 }
