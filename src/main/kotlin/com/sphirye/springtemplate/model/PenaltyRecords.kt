@@ -11,6 +11,7 @@ import jakarta.persistence.ManyToMany
 import jakarta.persistence.ManyToOne
 import jakarta.persistence.Table
 import jakarta.validation.constraints.NotNull
+import net.minidev.json.annotate.JsonIgnore
 import java.io.Serializable
 
 /**
@@ -42,6 +43,7 @@ class PenaltyRecords (
 
 ): Identifiable<Long> ,Serializable {
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "score_id", insertable = false, updatable = false)
     var score: MatchScore? = null
