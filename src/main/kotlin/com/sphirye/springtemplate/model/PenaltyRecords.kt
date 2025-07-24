@@ -26,17 +26,17 @@ class PenaltyRecords (
     @GeneratedValue
     override var id: Long? = null,
 
-    @Column(name = "score_id")
+    @Column(name = "score_id", nullable = false)
     @field:NotNull
     @field:EntityExists(entityName = "MatchScore")
     var scoreId: Long? = null,
 
-    @Column(name = "penalty_id")
+    @Column(name = "penalty_id", nullable = false)
     @field:NotNull
     @field:EntityExists(entityName = "Penalty")
     var penaltyId: Long? = null,
 
-    @Column(name = "fencer_id")
+    @Column(name = "fencer_id", nullable = false)
     @field:NotNull
     @field:EntityExists(entityName = "Fencer")
     var fencerId: Long? = null,
