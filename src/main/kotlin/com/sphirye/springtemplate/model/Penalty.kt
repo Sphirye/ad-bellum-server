@@ -54,11 +54,6 @@ class Penalty (
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "score", insertable = false, updatable = false)
-    var score: MatchScore? = null
-
-    @JsonIgnore
-    @ManyToOne
     @JoinColumn(name = "score_profile", insertable = false, updatable = false)
     var scoreProfile: ScoreProfile? = null
 }
