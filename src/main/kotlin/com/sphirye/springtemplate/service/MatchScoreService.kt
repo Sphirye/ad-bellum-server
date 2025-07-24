@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service
 class MatchScoreService(
     private val _matchScoreRepository: MatchScoreRepository,
     private val _matchService: MatchService,
+    private val _penaltyRecordService: PenaltyRecordsService,
 ): BaseService<MatchScore, Long>(_matchScoreRepository) {
 
     @Transactional
@@ -20,12 +21,14 @@ class MatchScoreService(
 
     override fun beforeCreate(entity: MatchScore): MatchScore {
         _validateMatchState(entity.matchId!!)
-
-        entity.penaltyRecords?.forEach {
-            it.score = entity
-        }
-
         return entity
+    }
+
+    override fun afterCreated(entity: MatchScore, savedEntity: MatchScore) {
+        entity.penaltyRecords.forEach {
+            it.scoreId = savedEntity.id
+            _penaltyRecordService.create(it)
+        }
     }
 
     override fun beforeUpdate(id: Long, entity: MatchScore): MatchScore {
