@@ -1,5 +1,6 @@
 package com.sphirye.springtemplate.model
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.sphirye.shared.utils.Identifiable
 import com.sphirye.shared.web.annotation.EntityExists
 import jakarta.persistence.Column
@@ -7,11 +8,9 @@ import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.Id
 import jakarta.persistence.JoinColumn
-import jakarta.persistence.ManyToMany
 import jakarta.persistence.ManyToOne
 import jakarta.persistence.Table
 import jakarta.validation.constraints.NotNull
-import net.minidev.json.annotate.JsonIgnore
 import java.io.Serializable
 
 /**
@@ -27,7 +26,6 @@ class PenaltyRecords (
     override var id: Long? = null,
 
     @Column(name = "score_id", nullable = false)
-    @field:NotNull
     @field:EntityExists(entityName = "MatchScore")
     var scoreId: Long? = null,
 
@@ -41,7 +39,7 @@ class PenaltyRecords (
     @field:EntityExists(entityName = "Fencer")
     var fencerId: Long? = null,
 
-): Identifiable<Long> ,Serializable {
+): Identifiable<Long>, Serializable {
 
     @JsonIgnore
     @ManyToOne
