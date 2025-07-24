@@ -29,7 +29,7 @@ class MatchScoreController {
     fun postScore(
         @Validated @RequestBody matchScore: MatchScore,
     ): MatchScore {
-        return _matchScoreService.create(matchScore)
+        return _matchScoreService.createScore(matchScore)
     }
 
     @PutMapping("/match-score/{id}")

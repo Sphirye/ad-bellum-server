@@ -4,6 +4,7 @@ import com.sphirye.shared.exception.exceptions.ConflictException
 import com.sphirye.shared.utils.BaseService
 import com.sphirye.springtemplate.model.MatchScore
 import com.sphirye.springtemplate.repository.MatchScoreRepository
+import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
 
 @Service
@@ -12,8 +13,18 @@ class MatchScoreService(
     private val _matchService: MatchService,
 ): BaseService<MatchScore, Long>(_matchScoreRepository) {
 
+    @Transactional
+    fun createScore(score: MatchScore): MatchScore {
+        return create(score)
+    }
+
     override fun beforeCreate(entity: MatchScore): MatchScore {
         _validateMatchState(entity.matchId!!)
+
+        entity.penaltyRecords?.forEach {
+            it.score = entity
+        }
+
         return entity
     }
 
