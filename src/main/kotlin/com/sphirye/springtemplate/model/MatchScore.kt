@@ -66,6 +66,6 @@ class MatchScore (
     @JoinColumn(name = "scorer_id", insertable = false, updatable = false)
     var scorer: Fencer? = null
 
-    @OneToMany(mappedBy = "score")
+    @OneToMany(mappedBy = "score", orphanRemoval = true)
     var penaltyRecords: MutableList<PenaltyRecords> = mutableListOf()
 }
