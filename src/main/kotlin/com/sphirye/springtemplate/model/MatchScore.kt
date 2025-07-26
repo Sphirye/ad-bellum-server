@@ -41,7 +41,7 @@ class MatchScore (
     var control: Boolean? = null,
 
     @Enumerated(EnumType.STRING)
-    var region: RegionType? = null
+    var region: RegionType? = null,
 
 ): Identifiable<Long>, Serializable, Auditing() {
 
@@ -66,6 +66,6 @@ class MatchScore (
     @JoinColumn(name = "scorer_id", insertable = false, updatable = false)
     var scorer: Fencer? = null
 
-    @OneToMany(mappedBy = "score")
-    var penalties: List<Penalty>? = null
+    @OneToMany(mappedBy = "score", orphanRemoval = true)
+    var penaltyRecords: MutableList<PenaltyRecords> = mutableListOf()
 }

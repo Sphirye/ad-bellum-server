@@ -11,7 +11,7 @@ import kotlin.reflect.KClass
 annotation class EntityExists(
     val message: String = "Reference does not exists",
     val entityName: String,
-    val primaryKey: String,
+    val primaryKey: String = "id",
     val groups: Array<KClass<*>> = [],
     val payload: Array<KClass<out Payload>> = []
 )

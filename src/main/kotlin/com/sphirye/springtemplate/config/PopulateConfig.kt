@@ -32,13 +32,14 @@ class PopulateConfig {
         }
 
         if (_userRepository.count() <= 0) {
-            _userService.create(
-                User(
-                    username = "sphirye",
-                    password = "1234",
-                    email = "sphirye@gmail.com"
-                )
+            val user = User(
+                username = "sphirye",
+                password = "1234",
+                email = "sphirye@gmail.com",
             )
+
+            user.createdBy = -1
+            _userService.create(user)
         }
     }
 
