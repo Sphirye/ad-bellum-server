@@ -50,7 +50,7 @@ class MatchScore (
     }
 
     enum class Verdict {
-        POINT, DOUBLE, NO_EXCHANGE
+        POINT, DOUBLE, NO_EXCHANGE, NO_QUALITY
     }
 
     enum class RegionType {
