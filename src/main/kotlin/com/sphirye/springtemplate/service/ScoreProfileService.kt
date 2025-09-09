@@ -16,6 +16,10 @@ class ScoreProfileService(
 ): BaseService<ScoreProfile, Long>(_scoreProfileRepository) {
 
     @Transactional
+    fun createProfileScore(entity: ScoreProfile): ScoreProfile {
+        return create(entity)
+    }
+
     override fun afterCreated(entity: ScoreProfile) {
         _penaltyService.createFromScoreProfile(entity)
     }
