@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
 import org.springframework.validation.annotation.Validated
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.ModelAttribute
 import org.springframework.web.bind.annotation.PatchMapping
@@ -42,7 +43,7 @@ class ScoreProfileController {
     fun postScoreProfile(
         @Validated @RequestBody scoreProfileScore: ScoreProfile,
     ): ScoreProfile {
-        return _profileScoreService.create(scoreProfileScore)
+        return _profileScoreService.createProfileScore(scoreProfileScore)
     }
 
     @PutMapping("/score-profile/{id}")
@@ -57,5 +58,10 @@ class ScoreProfileController {
     @PatchMapping("/score-profile/{id}/time-left")
     fun patchTimeLeft(@PathVariable id: Long, @RequestParam timeLeft: Int): ScoreProfile {
         return _profileScoreService.updateTimeLeft(id, timeLeft)
+    }
+
+    @DeleteMapping("/score-profile/{id}")
+    fun deleteScoreProfile(@PathVariable id: Long) {
+        return _profileScoreService.deleteById(id)
     }
 }
