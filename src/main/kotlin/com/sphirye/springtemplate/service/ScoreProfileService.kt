@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service
 class ScoreProfileService(
     private val _scoreProfileRepository: ScoreProfileRepository,
     private val _penaltyService: PenaltyService,
+    private val _scoreActionService: ScoreActionService,
 ): BaseService<ScoreProfile, Long>(_scoreProfileRepository) {
 
     @Transactional
@@ -22,6 +23,7 @@ class ScoreProfileService(
 
     override fun afterCreated(entity: ScoreProfile) {
         _penaltyService.createFromScoreProfile(entity)
+        _scoreActionService.createFromScoreProfile(entity)
     }
 
     override fun beforeUpdate(id: Long, entity: ScoreProfile): ScoreProfile {
