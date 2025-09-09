@@ -63,4 +63,7 @@ class ScoreProfile (
 
     @OneToMany(mappedBy = "scoreProfile", cascade = [CascadeType.MERGE], orphanRemoval = true)
     var penalties: List<Penalty>? = null
+
+    @OneToMany(mappedBy = "scoreProfile", cascade = [CascadeType.MERGE], orphanRemoval = true)
+    var actions: MutableList<ScoreAction>? = null
 }
