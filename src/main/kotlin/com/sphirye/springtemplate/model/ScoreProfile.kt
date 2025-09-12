@@ -23,15 +23,6 @@ class ScoreProfile (
     var name: String? = null,
 
     @ColumnDefault("0")
-    var thrusts: Int? = null,
-
-    @ColumnDefault("0")
-    var cuts: Int? = null,
-
-    @ColumnDefault("0")
-    var slices: Int? = null,
-
-    @ColumnDefault("0")
     var controls: Int? = null,
 
     var afterblow: Int? = null,
