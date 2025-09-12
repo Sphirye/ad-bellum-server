@@ -14,9 +14,6 @@ class MatchScore (
     @GeneratedValue
     override var id: Long? = null,
 
-    @Column(name = "point_type")
-    @Enumerated(EnumType.STRING)
-    var type: PointType? = null,
 
     @Column(name = "scorer_id")
     @field:EntityExists(
@@ -24,6 +21,13 @@ class MatchScore (
         primaryKey = "id",
     )
     var scorerId: Long? = null,
+
+    @Column(name = "action_id")
+    @field:EntityExists(
+        entityName = "ScoreAction",
+        primaryKey = "id",
+    )
+    var actionId: Long? = null,
 
     @field:NotNull
     @Enumerated(EnumType.STRING)
@@ -45,10 +49,6 @@ class MatchScore (
 
 ): Identifiable<Long>, Serializable, Auditing() {
 
-    enum class PointType {
-        CUT, THRUST, SLICE
-    }
-
     enum class Verdict {
         POINT, DOUBLE, NO_EXCHANGE, NO_QUALITY
     }
@@ -65,6 +65,10 @@ class MatchScore (
     @ManyToOne
     @JoinColumn(name = "scorer_id", insertable = false, updatable = false)
     var scorer: Fencer? = null
+
+    @OneToOne
+    @JoinColumn(name = "action_id", insertable = false, updatable = false)
+    var action: ScoreAction? = null
 
     @OneToMany(mappedBy = "score", orphanRemoval = true)
     var penaltyRecords: MutableList<PenaltyRecords> = mutableListOf()
