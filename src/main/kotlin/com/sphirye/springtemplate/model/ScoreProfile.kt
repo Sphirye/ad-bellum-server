@@ -44,17 +44,17 @@ class ScoreProfile (
     @Enumerated(EnumType.STRING)
     var type: ScoreProfileType? = null,
 
-    @OneToMany(cascade = [CascadeType.ALL])
-    var overrides: MutableList<ScoreOverride> = mutableListOf()
-
     ): Identifiable<Long>, Serializable, Auditing() {
     enum class ScoreProfileType {
         TEMPLATE, INSTANCE
     }
 
-    @OneToMany(mappedBy = "scoreProfile", cascade = [CascadeType.MERGE], orphanRemoval = true)
+    @OneToMany(mappedBy = "scoreProfile", cascade = [CascadeType.ALL], orphanRemoval = true)
+    var overrides: MutableList<ScoreOverride> = mutableListOf()
+
+    @OneToMany(mappedBy = "scoreProfile", cascade = [CascadeType.ALL], orphanRemoval = true)
     var penalties: List<Penalty>? = null
 
-    @OneToMany(mappedBy = "scoreProfile", cascade = [CascadeType.MERGE], orphanRemoval = true)
-    var actions: MutableList<ScoreAction>? = null
+    @OneToMany(mappedBy = "scoreProfile", cascade = [CascadeType.ALL], orphanRemoval = true)
+    var actions: MutableList<ScoreAction>? = mutableListOf()
 }
