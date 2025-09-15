@@ -14,6 +14,7 @@ class ScoreProfileService(
     private val _scoreProfileRepository: ScoreProfileRepository,
     private val _penaltyService: PenaltyService,
     private val _scoreActionService: ScoreActionService,
+    private val _scoreOverrideService: ScoreOverrideService,
 ): BaseService<ScoreProfile, Long>(_scoreProfileRepository) {
 
     @Transactional
@@ -32,6 +33,21 @@ class ScoreProfileService(
                 penalty.scoreProfileId = id
             }
         }
+
+        entity.actions?.forEach { action ->
+            if (action.scoreProfileId == null) {
+                action.scoreProfileId = id
+            }
+        }
+
+        entity.overrides.forEach { override ->
+            //Check if override has an id and the referenced actionId exists in the profile.
+            if (override.id != null && !entity.actions!!.any{ it.id == override.id }) {
+                println("DELETING OVERRIDE")
+                _scoreOverrideService.deleteById(override.id!!)
+            }
+        }
+
         return entity
     }
 
