@@ -1,5 +1,6 @@
 package com.sphirye.springtemplate.model
 
+import com.fasterxml.jackson.annotation.JsonManagedReference
 import com.sphirye.shared.utils.Identifiable
 import jakarta.persistence.CascadeType
 import jakarta.persistence.Column
@@ -44,17 +45,21 @@ class ScoreProfile (
     @Enumerated(EnumType.STRING)
     var type: ScoreProfileType? = null,
 
-    ): Identifiable<Long>, Serializable, Auditing() {
+): Identifiable<Long>, Serializable, Auditing() {
+
     enum class ScoreProfileType {
         TEMPLATE, INSTANCE
     }
 
     @OneToMany(mappedBy = "scoreProfile", cascade = [CascadeType.ALL], orphanRemoval = true)
-    var overrides: MutableList<ScoreOverride> = mutableListOf()
-
-    @OneToMany(mappedBy = "scoreProfile", cascade = [CascadeType.ALL], orphanRemoval = true)
     var penalties: List<Penalty>? = null
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "scoreProfile", cascade = [CascadeType.ALL], orphanRemoval = true)
     var actions: MutableList<ScoreAction>? = mutableListOf()
+
+    fun setActionsRelationship() {
+        this.actions?.forEach { it.scoreProfile = this }
+    }
+
 }
