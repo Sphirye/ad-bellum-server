@@ -21,21 +21,6 @@ class ScoreProfileService(
         return create(entity)
     }
 
-    override fun afterCreated(entity: ScoreProfile) {
-        _penaltyService.createFromScoreProfile(entity)
-//        _scoreActionService.createFromScoreProfile(entity)
-    }
-
-    override fun beforeUpdate(id: Long, entity: ScoreProfile): ScoreProfile {
-        entity.penalties?.forEach { penalty ->
-            if (penalty.scoreProfileId == null) {
-                penalty.scoreProfileId = id
-            }
-        }
-
-        return entity
-    }
-
     fun instance(scoreProfile: ScoreProfile): ScoreProfile {
         scoreProfile.type = ScoreProfileType.INSTANCE
         scoreProfile.id = null
