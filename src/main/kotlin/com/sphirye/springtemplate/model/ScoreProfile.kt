@@ -51,8 +51,9 @@ class ScoreProfile (
         TEMPLATE, INSTANCE
     }
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "scoreProfile", cascade = [CascadeType.ALL], orphanRemoval = true)
-    var penalties: List<Penalty>? = null
+    var penalties: MutableList<Penalty>? = null
 
     @JsonManagedReference
     @OneToMany(mappedBy = "scoreProfile", cascade = [CascadeType.ALL], orphanRemoval = true)
@@ -60,6 +61,7 @@ class ScoreProfile (
 
     fun setActionsRelationship() {
         this.actions?.forEach { it.scoreProfile = this }
+        this.penalties?.forEach { it.scoreProfile = this }
     }
 
 }
