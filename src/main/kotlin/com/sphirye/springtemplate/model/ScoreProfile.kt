@@ -59,9 +59,18 @@ class ScoreProfile (
     @OneToMany(mappedBy = "scoreProfile", cascade = [CascadeType.ALL], orphanRemoval = true)
     var actions: MutableList<ScoreAction>? = mutableListOf()
 
-    fun setActionsRelationship() {
+    fun setChildrenRelationships() {
         this.actions?.forEach { it.scoreProfile = this }
         this.penalties?.forEach { it.scoreProfile = this }
+    }
+
+    fun removeChildrenIds() {
+        this.penalties?.forEach { it.id = null }
+        this.actions?.forEach {
+            it.overrides.forEach { it.id = null }
+            it.id = null
+        }
+        this.setChildrenRelationships()
     }
 
 }

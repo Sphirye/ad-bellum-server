@@ -17,13 +17,14 @@ class ScoreProfileService(
 
     @Transactional
     fun createProfileScore(entity: ScoreProfile): ScoreProfile {
-        entity.setActionsRelationship()
+        entity.setChildrenRelationships()
         return create(entity)
     }
 
     fun instance(scoreProfile: ScoreProfile): ScoreProfile {
         scoreProfile.type = ScoreProfileType.INSTANCE
         scoreProfile.id = null
+        scoreProfile.removeChildrenIds()
         return create(scoreProfile)
     }
 
