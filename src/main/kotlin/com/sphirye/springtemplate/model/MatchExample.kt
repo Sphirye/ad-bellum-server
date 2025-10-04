@@ -16,6 +16,8 @@ class MatchExample (
 
     var createdBy: String? = null,
 
+    var groupId: String? = null,
+
     ) {
     fun toSpecification(): Specification<Match> {
         return Specification { root, query, cb ->
@@ -24,6 +26,8 @@ class MatchExample (
             fencer_1_id?.let { predicates.add(_equalsFencerId(it, root, cb)) }
 
             fencer_2_id?.let { predicates.add(_equalsFencerId(it, root, cb)) }
+
+            groupId?.let { predicates.add(cb.equal(root.get(Match_.groupId), it)) }
 
             state?.let { predicates.add(cb.equal(root.get<Match.MatchState>(Match_.STATE), it)) }
 
