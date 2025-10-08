@@ -21,8 +21,12 @@ open class Auditing : Serializable {
     var lastModifiedDate: LocalDateTime? = null
 
     @CreatedBy
-    @Column(updatable = false, nullable = false)
-    var createdBy: Long? = null
+    @Column(name = "created_by", updatable = false)
+    var createdById: Long? = null
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "created_by", insertable = false, updatable = false)
+    var createdBy: User? = null
 
     @LastModifiedBy
     var lastModifiedBy: Long? = null
