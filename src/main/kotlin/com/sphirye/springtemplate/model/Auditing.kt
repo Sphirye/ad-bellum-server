@@ -1,5 +1,6 @@
 package com.sphirye.springtemplate.model
 
+import com.fasterxml.jackson.annotation.JsonProperty
 import jakarta.persistence.*
 import org.springframework.data.annotation.CreatedBy
 import org.springframework.data.annotation.CreatedDate
@@ -14,20 +15,25 @@ import java.time.LocalDateTime
 open class Auditing : Serializable {
 
     @CreatedDate
-    @Column(updatable = false, nullable = false)
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    @Column(name = "created_date", updatable = false, nullable = false)
     var createdDate: LocalDateTime? = null
 
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @LastModifiedDate
     var lastModifiedDate: LocalDateTime? = null
 
     @CreatedBy
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @Column(name = "created_by", updatable = false)
     var createdById: Long? = null
 
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "created_by", insertable = false, updatable = false)
     var createdBy: User? = null
 
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @LastModifiedBy
     var lastModifiedBy: Long? = null
 }
