@@ -1,6 +1,7 @@
 package com.sphirye.springtemplate.model
 
-import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonBackReference
+
 import com.sphirye.shared.utils.Identifiable
 import com.sphirye.shared.web.annotation.EntityExists
 import jakarta.persistence.Column
@@ -27,14 +28,6 @@ class Penalty (
     )
     var scoreId: Long? = null,
 
-    @Column(name = "score_profile", nullable = false)
-    @field:NotNull
-    @field:EntityExists(
-        entityName = "ScoreProfile",
-        primaryKey = "id",
-    )
-    var scoreProfileId: Long? = null,
-
     @Column(nullable = false)
     var title: String? = null,
 
@@ -52,8 +45,8 @@ class Penalty (
         TEMPLATE, INSTANCE
     }
 
-    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "score_profile", insertable = false, updatable = false)
+    @JsonBackReference
+    @JoinColumn(name = "score_profile_id", nullable = false)
     var scoreProfile: ScoreProfile? = null
 }

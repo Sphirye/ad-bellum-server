@@ -44,6 +44,13 @@ class Match (
     )
     var scoreProfileId: Long? = null,
 
+    @Column(name = "group_id")
+    @field:EntityExists(
+        entityName = "Group",
+        primaryKey = "id"
+    )
+    var groupId: Long? = null
+
 ): Identifiable<Long>, Serializable, Auditing() {
     enum class MatchState {
         WAITING, IN_PROGRESS, FINISHED
@@ -58,6 +65,10 @@ class Match (
         INJURY,
         OTHER,
     }
+
+    @ManyToOne
+    @JoinColumn(name = "group_id", insertable = false, updatable = false)
+    var group: Group? = null
 
     @ManyToOne
     @JoinColumn(name = "score_profile", insertable = false, updatable = false, nullable = false)
