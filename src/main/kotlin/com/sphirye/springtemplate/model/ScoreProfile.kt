@@ -32,6 +32,8 @@ class ScoreProfile (
     @ColumnDefault("0")
     var dobleoutLimit: Int? = null,
 
+    var hasPointsLimit: Boolean? = false,
+
     var pointsLimit: Int? = null,
 
     var hasDobleoutLimit: Boolean? = false,
