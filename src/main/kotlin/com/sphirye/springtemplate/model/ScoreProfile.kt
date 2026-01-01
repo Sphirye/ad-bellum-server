@@ -36,7 +36,7 @@ class ScoreProfile (
 
     var hasDobleoutLimit: Boolean? = false,
 
-    var timed: Boolean? = false,
+    var hasTimeLimit: Boolean? = false,
 
     var timeLimitInSeconds: Int? = null,
 
