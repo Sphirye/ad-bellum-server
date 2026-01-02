@@ -49,7 +49,14 @@ class Match (
         entityName = "Group",
         primaryKey = "id"
     )
-    var groupId: Long? = null
+    var groupId: Long? = null,
+
+    @Column(name = "winner_fencer_id")
+    @field:EntityExists(
+        entityName = "Fencer",
+        primaryKey = "id",
+    )
+    var winnerFencerId: Long? = null,
 
 ): Identifiable<Long>, Serializable, Auditing() {
     enum class MatchState {
