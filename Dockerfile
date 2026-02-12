@@ -11,7 +11,7 @@ COPY . .
 RUN ./gradlew bootJar
 
 # Usa una imagen más liviana de JDK para ejecutar la aplicación
-FROM openjdk:17-alpine
+FROM eclipse-temurin:17-jre-alpine
 
 # Copia el JAR generado de la fase de construcción
 COPY --from=build /app/build/libs/*.jar app.jar

@@ -49,7 +49,14 @@ class Match (
         entityName = "Group",
         primaryKey = "id"
     )
-    var groupId: Long? = null
+    var groupId: Long? = null,
+
+    @Column(name = "winner_fencer_id")
+    @field:EntityExists(
+        entityName = "Fencer",
+        primaryKey = "id",
+    )
+    var winnerFencerId: Long? = null,
 
 ): Identifiable<Long>, Serializable, Auditing() {
     enum class MatchState {
@@ -86,5 +93,10 @@ class Match (
     @ManyToOne
     @JoinColumn(name = "fencer_2", insertable = false, updatable = false)
     var fencer_2: Fencer? = null
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "winner_fencer_id", insertable = false, updatable = false)
+    var winnerFencer: Fencer? = null
 
 }

@@ -26,18 +26,20 @@ class ScoreProfile (
     @ColumnDefault("0")
     var controls: Int? = null,
 
+    @ColumnDefault("0")
     var afterblow: Int? = null,
 
     @ColumnDefault("0")
     var dobleoutLimit: Int? = null,
 
-    @ColumnDefault("0")
+    var hasPointsLimit: Boolean? = false,
+
     var pointsLimit: Int? = null,
 
-    @Column(nullable = false)
-    var timed: Boolean? = null,
+    var hasDobleoutLimit: Boolean? = false,
 
-    @ColumnDefault("0")
+    var hasTimeLimit: Boolean? = false,
+
     var timeLimitInSeconds: Int? = null,
 
     var timeLeft: Int? = null,
