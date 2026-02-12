@@ -94,4 +94,9 @@ class Match (
     @JoinColumn(name = "fencer_2", insertable = false, updatable = false)
     var fencer_2: Fencer? = null
 
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "winner_fencer_id", insertable = false, updatable = false)
+    var winnerFencer: Fencer? = null
+
 }
