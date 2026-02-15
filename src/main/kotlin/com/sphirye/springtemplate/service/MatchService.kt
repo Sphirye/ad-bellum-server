@@ -35,6 +35,7 @@ class MatchService(
 
         match.state = entity.state
         match.resolution = entity.resolution
+        match.winnerFencerId = entity.winnerFencerId
 
         return update(id, match)
     }
