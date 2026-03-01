@@ -60,6 +60,11 @@ class ScoreProfileController {
         return _profileScoreService.updateTimeLeft(id, timeLeft)
     }
 
+    @PatchMapping("/score-profile/{id}/elapsed-time")
+    fun patchElapsedTime(@PathVariable id: Long, @RequestParam elapsedTime: Int): ScoreProfile {
+        return _profileScoreService.updateElapsedTime(id, elapsedTime)
+    }
+
     @DeleteMapping("/score-profile/{id}")
     fun deleteScoreProfile(@PathVariable id: Long) {
         return _profileScoreService.deleteById(id)
