@@ -44,6 +44,12 @@ class ScoreProfile (
 
     var timeLeft: Int? = null,
 
+    var elapsedTimeInSeconds: Int? = null,
+
+    var countdown: Boolean? = null,
+
+    var forcedlyCloseOnTimeout: Boolean? = null,
+
     @Enumerated(EnumType.STRING)
     var type: ScoreProfileType? = null,
 

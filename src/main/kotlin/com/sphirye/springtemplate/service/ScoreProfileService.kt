@@ -34,5 +34,12 @@ class ScoreProfileService(
         return _scoreProfileRepository.save(scoreProfile)
     }
 
+    fun updateElapsedTime(id: Long, elapsedTime: Int): ScoreProfile {
+        val scoreProfile = findById(id)
+        scoreProfile.elapsedTimeInSeconds = elapsedTime
+        return _scoreProfileRepository.save(scoreProfile)
+
+    }
+
 
 }
