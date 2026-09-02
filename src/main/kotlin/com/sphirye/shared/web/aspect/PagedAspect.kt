@@ -1,6 +1,6 @@
 package com.sphirye.shared.web.aspect
 
-import com.sphirye.springtemplate.service.tools.Constants
+import com.sphirye.shared.web.utils.Constants
 import jakarta.servlet.http.HttpServletResponse
 import org.aspectj.lang.ProceedingJoinPoint
 import org.aspectj.lang.annotation.Around

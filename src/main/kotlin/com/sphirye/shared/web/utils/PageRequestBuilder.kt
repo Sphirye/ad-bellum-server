@@ -1,7 +1,5 @@
 package com.sphirye.shared.web.utils
 
-import com.sphirye.springtemplate.model.Auditing_
-import com.sphirye.springtemplate.service.tools.Constants
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Sort
 import org.springframework.web.context.request.NativeWebRequest
@@ -21,11 +19,11 @@ object PageRequestBuilder {
     private fun setSortByDirection(direction: String?): Sort {
         if (!direction.isNullOrEmpty()) {
             if (direction == "DESC") {
-                return Sort.by(Sort.Order.desc(Auditing_.CREATED_DATE))
+                return Sort.by(Sort.Order.desc(Constants.CREATED_DATE_FIELD))
             }
 
             if (direction == "ASC") {
-                return Sort.by(Sort.Order.asc(Auditing_.CREATED_DATE))
+                return Sort.by(Sort.Order.asc(Constants.CREATED_DATE_FIELD))
             }
         }
 

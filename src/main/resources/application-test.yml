@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:adbellum;MODE=MariaDB;DB_CLOSE_DELAY=-1;NON_KEYWORDS=VALUE;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        format_sql: true
+
+app:
+  jwt:
+    secret-key: QXZPMzBnNkdBdzVyNTdxQ05wQm1Eb1J0WjJ5UTJZbjhJVXJLNk5BaW9BbGh1Z2VjRk9aMnQvVWxzc1dScUprVG8vQWJjREVGZ2hpSmtMTU5vcFFyc3R1dnd4eXpBQkNERUZHSElKS0xNTk9QUVJTVFVWV1hZWjAxMjM0NTY=
+  security:
+    cors:
+      origins: '*'
+      methods: GET, PUT, PATCH, DELETE, HEAD
